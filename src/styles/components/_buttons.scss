@@ -1,0 +1,23 @@
+@use '../abstract/mixins.scss';
+@use '../abstract/_colours.scss';
+
+.button__exit {
+    @include mixins.flex-center;
+    background-color: colours.$color-buttonFilling;
+    border: 1px solid colours.$color-buttonFrame;
+
+    gap: 10px;
+    width: 207px;
+    height: 62px;
+
+    &--image {
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+    }
+}
+
+.link__exit {
+    text-decoration: none;
+    color: colours.$color-white;
+}

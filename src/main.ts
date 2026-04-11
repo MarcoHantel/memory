@@ -36,7 +36,7 @@ function init(fieldRef: HTMLElement | null, display: HTMLElement | null) {
 
 function flipCard(fieldRef: HTMLElement | null) {
 
-        if (fieldRef) {
+    if (fieldRef) {
         fieldRef.addEventListener("click", event => {
             const card = (event.target as HTMLAudioElement).closest('.card') as HTMLButtonElement;
             if (card) {
@@ -78,8 +78,15 @@ function headerHtml(header: HTMLElement | null) {
     header!.innerHTML = /*html*/`
     <div class="game__header">
         <div class="game__header--inner">
-          <div class="game-display">Blue Oragen</div>
-          <div class="game-exit">Exit Game</div>
+
+            <div class="game-display">Hallo</div>
+
+            <a class="link__exit" href="#">
+              <div class="button__exit">
+                 <img class="button__exit--image" src="src/images/items/exit.svg" alt="Exit Icon">
+                 <div class="button__exit--button">Exit game</div>
+             </div>
+            </a>
         </div>
     </div>
     
