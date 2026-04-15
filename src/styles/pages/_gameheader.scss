@@ -14,3 +14,8 @@
         margin-bottom: 32px;
     }
 }
+
+.game__display{
+    background-color: aqua;
+    @include mixins.flex-space-between;
+}

@@ -10,14 +10,34 @@
 
 <body>
 
-    <div class="limitaion">
-            <div id="header">Hallo</div>
-        <div class="game-wrapper">
-            <div id="cardWrapper" class="card-wrapper"></div>
-            <section id="field"></section>
 
+    <section id="start-screen">
+        <h1>Memory</h1>
+        <button id="start-btn">Start</button>
+    </section>
+
+    <section id="config-screen" class="hidden">
+        <h2>Choose board size</h2>
+        <button data-size="16">16</button>
+        <button data-size="24">24</button>
+        <button data-size="36">36</button>
+        <button id="config-start-btn">Play</button>
+    </section>
+
+    <section id="game-screen" class="hidden">
+        <div class="limitaion">
+            <div id="header">Hallo</div>
+            <div class="game-wrapper">
+                <div id="cardWrapper" class="card-wrapper"></div>
+                <section id="field"></section>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="gameover-screen" class="hidden">
+        <h2 id="winner-text">Player Blue wins!</h2>
+        <button id="restart-btn">Play again</button>
+    </section>
 
     <script type="module" src="/src/main.ts"></script>
 

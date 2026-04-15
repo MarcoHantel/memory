@@ -19,7 +19,7 @@ export const cardFace: string[] = [
     'src/images/cardFace/vue.svg'
 ];
 
-export let currentPlayer = true; //true = player one, false = player two
+// export let currentPlayer = true; //true = player one, false = player two
 export const match: boolean = false; //true = match, false = no match
 
 export function cardHtml(fieldRef: HTMLElement | null, deck: string[]) {
@@ -46,10 +46,3 @@ function cardHtmlContent(fieldRef: HTMLElement, cardImage: string, index: number
         </button>
     `;
 }
-
-// function matchCard() {
-//     if (match) {
-
-//         console.log('match found!')
-//     }
-// }

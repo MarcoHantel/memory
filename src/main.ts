@@ -1,7 +1,7 @@
 import './styles/style.scss';
 // import { cardHtml, match, player } from './GameConfig';
 // import { createDeck } from './utilities/shuffleArray';
-import { cardHtml, currentPlayer, } from './GameConfig';
+import { cardHtml } from './GameConfig';
 import { createDeck } from './utilities/shuffleArray';
 
 
@@ -9,6 +9,12 @@ const boardSize: number = 16; // Das muss abhängig sein vom Button (16, 24 oder
 
 const fieldRef = document.getElementById('field');
 const header = document.getElementById('header');
+
+const gameState = {
+    playerOneScore: 0,
+    playerTwoScore: 0,
+    currentPlayer: true
+};
 
 
 init(fieldRef, header)
@@ -87,22 +93,43 @@ function flipCard(fieldRef: HTMLElement | null) {
     }
 
     function disableCards() {
-        // Gefundene Paare markieren
         firstCard?.classList.add('matched');
         secondCard?.classList.add('matched');
+
+        // Score erhöhen je nach aktuellem Spieler
+        if (gameState.currentPlayer) {
+            gameState.playerOneScore++;
+        } else {
+            gameState.playerTwoScore++;
+        }
+
+        console.log('Punkt für:', gameState.currentPlayer ? 'Blue' : 'Orange');
+        console.log('blue:', gameState.playerOneScore, 'orange:', gameState.playerTwoScore);
+
+        // Header neu rendern
+        headerHtml(header);
+
+        // Spielende prüfen
+        checkGameOver();
 
         resetTurn();
     }
 
-    function unflipCards() {
-        setTimeout(() => {
-            // Kein Paar → Karten wieder schließen
-            firstCard?.classList.remove('is-flipped');
-            secondCard?.classList.remove('is-flipped');
+function unflipCards() {
+    setTimeout(() => {
+        firstCard?.classList.remove('is-flipped');
+        secondCard?.classList.remove('is-flipped');
 
-            resetTurn();
-        }, 1000);
-    }
+        //Spieler wechseln
+        gameState.currentPlayer = !gameState.currentPlayer;
+
+        console.log('Jetzt dran:', gameState.currentPlayer ? 'Blue' : 'Orange');
+
+        headerHtml(header);
+
+        resetTurn();
+    }, 1000);
+}
 
     function resetTurn() {
         // Für den nächsten Zug alles zurücksetzen
@@ -110,17 +137,21 @@ function flipCard(fieldRef: HTMLElement | null) {
         secondCard = null;
         lockBoard = false;
     }
+
 }
+
+
 
 function headerHtml(header: HTMLElement | null) {
     header!.innerHTML = /*html*/`
     <div class="game__header">
         <div class="game__header--inner">
-
-            <div class="game-display">Hallo</div>
-
+            <div class="game__display">
+                <div class="game__display--item">Blue ${gameState.playerOneScore}</div>
+                <div class="game__display--item">Orange ${gameState.playerTwoScore}</div>
+            </div>
             <div class="current__player">current player:
-                <img class="current__player--image" src="${currentPlayer ? './src/images/items/playerOne.svg' : './src/images/items/playerTwo.svg'}" alt="player signe">
+                <img class="current__player--image" src="${gameState.currentPlayer ? './src/images/items/playerOne.svg' : './src/images/items/playerTwo.svg'}" alt="player signe">
             </div>
 
             <a class="link__exit" href="#">
@@ -133,6 +164,32 @@ function headerHtml(header: HTMLElement | null) {
     </div>
     
     `;
+}
+
+function checkGameOver() {
+    const totalPairs = boardSize / 2;
+    const totalScore = gameState.playerOneScore + gameState.playerTwoScore;
+
+    if (totalScore === totalPairs) {
+        endGame();
+    }
+}
+
+function endGame() {
+    let winnerText = '';
+
+    if (gameState.playerOneScore > gameState.playerTwoScore) {
+        winnerText = 'Player Blue wins!';
+    } else if (gameState.playerTwoScore > gameState.playerOneScore) {
+        winnerText = 'Player Orange wins!';
+    } else {
+        winnerText = 'Draw!';
+    }
+
+    // erstmal simpel mit alert
+    setTimeout(() => {
+        alert(winnerText); // hier dann HTML Seite bauen mit Gewinneranzeige, Button für neues Spiel etc.
+    }, 500);
 }
 
 
