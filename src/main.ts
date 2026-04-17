@@ -115,21 +115,21 @@ function flipCard(fieldRef: HTMLElement | null) {
         resetTurn();
     }
 
-function unflipCards() {
-    setTimeout(() => {
-        firstCard?.classList.remove('is-flipped');
-        secondCard?.classList.remove('is-flipped');
+    function unflipCards() {
+        setTimeout(() => {
+            firstCard?.classList.remove('is-flipped');
+            secondCard?.classList.remove('is-flipped');
 
-        //Spieler wechseln
-        gameState.currentPlayer = !gameState.currentPlayer;
+            //Spieler wechseln
+            gameState.currentPlayer = !gameState.currentPlayer;
 
-        console.log('Jetzt dran:', gameState.currentPlayer ? 'Blue' : 'Orange');
+            console.log('Jetzt dran:', gameState.currentPlayer ? 'Blue' : 'Orange');
 
-        headerHtml(header);
+            headerHtml(header);
 
-        resetTurn();
-    }, 1000);
-}
+            resetTurn();
+        }, 1000);
+    }
 
     function resetTurn() {
         // Für den nächsten Zug alles zurücksetzen
@@ -147,13 +147,14 @@ function headerHtml(header: HTMLElement | null) {
     <div class="game__header">
         <div class="game__header--inner">
             <div class="game__display">
-                <div class="game__display--item">Blue ${gameState.playerOneScore}</div>
-                <div class="game__display--item">Orange ${gameState.playerTwoScore}</div>
+                <div class="game__display--item--blue"> <img src="./src/images/items/playerOne.svg" alt="Player One"> Blue ${gameState.playerOneScore}</div>
+                <div class="game__display--item--orange"> <img src="./src/images/items/playerTwo.svg" alt="Player Two"> Orange ${gameState.playerTwoScore} </div>
             </div>
-            <div class="current__player">current player:
+            <div class="current__player">
+             <div class="current__player--text">current player:
                 <img class="current__player--image" src="${gameState.currentPlayer ? './src/images/items/playerOne.svg' : './src/images/items/playerTwo.svg'}" alt="player signe">
+             </div>
             </div>
-
             <a class="link__exit" href="#">
               <div class="button__exit">
                  <img class="button__exit--image" src="src/images/items/exit.svg" alt="Exit Icon">
