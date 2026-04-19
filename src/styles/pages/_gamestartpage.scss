@@ -1,0 +1,33 @@
+@use '../abstract/mixins.scss' as mixins;
+@use '../abstract/colours.scss' as colours;
+@use '../components/buttons.scss';
+
+.startScreen {
+    background-color: colours.$color-primaryDark;
+    height: 100vh;
+    @include mixins.flex-column;
+}
+
+.start-screen__container {
+
+    &--title {
+        font-size: 48px;
+        color: colours.$color-white;
+    }
+
+    &--text {
+        font-size: 140px;
+        font-weight: 700;
+        color: colours.$color-white;
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+    }
+
+}
+
+.controler {
+    position: absolute;
+    bottom: 20px;
+    left: 185px;
+    transform: translateX(-50%);
+}

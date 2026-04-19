@@ -1,5 +1,6 @@
 @use '../abstract/mixins.scss';
 @use '../abstract/_colours.scss';
+ @import '../abstract/fonts.scss';
 
 .button__exit {
     @include mixins.flex-center;
@@ -23,4 +24,32 @@
     font-weight: 700;
     font-style: bold;
     font-size: 24px;
+}
+
+.start-screen__btn {
+    width: 250px;
+    height: 78px;
+    margin-top: 64px;
+    background-color: colours.$color-yellow;
+    @include mixins.flex-center;
+    padding: 24px;
+    gap: 20px;
+
+    &:hover{
+        cursor: pointer;
+    }
+
+    &--text{
+        font-size: 40px;
+        font-weight: 700;
+    }
+
+    &--imgC{
+        width: 44px;
+        height: 32px;
+    }
+
+    &--imgA{
+        width: 33px;
+    }
 }
