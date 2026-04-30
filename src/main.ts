@@ -4,36 +4,48 @@ import { createDeck } from './utilities/shuffleArray';
 import { gameStartPage } from './pages/gameStartPage';
 import { createConfigScreen } from './pages/gameConfigPage';
 import { Card } from './model/card.class';
-import { gameExitHtml} from './pages/gameExitPage';
+import { gameExitHtml } from './pages/gameExitPage';
+import { gameOverHtml } from './pages/gameOverPage';
 
 
 const boardSize: number = 16; // Das muss abhängig sein vom Button (16, 24 oder 36) und wird an die Funktion cardHtml übergeben, damit die richtige Anzahl an Karten generiert wird. Außerdem muss es an createDeck übergeben werden, damit die richtige Anzahl an Karten gemischt wird.
 
 // const fieldRef = document.getElementById('field');
-const header = document.getElementById('header');
+const header: HTMLElement | null = document.getElementById('header');
 
-const gameState = {
+export const gameState = {
+    // playerOneScore: 0,
+    // playerTwoScore: 0,
+    // currentPlayer: true
+
     playerOneScore: 0,
     playerTwoScore: 0,
-    currentPlayer: true
+    currentPlayer: true,
+    theme: "codeVibes",
+    player: "blue",
+    boardSize: 16
 };
 
 
 startApp(); // 👉 DAS ist jetzt dein Einstiegspunkt
 
 function startApp() {
+   
+// let winnerText = 'Lalala'; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Später wieder rausnehmen, nur für Deisgn
+
     createConfigScreen(); //Game Config Page wird generiert
-    gameStartPage(); // 👈 Startscreen anzeigen
+    gameStartPage(); // Startscreen anzeigen
     gameExitHtml(); // exit popup
+    // gameOverHtml(winnerText); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Später wieder rausnehmen, nur für Deisgn 
 
 }
 
-export function init(fieldRef: HTMLElement | null, header: HTMLElement | null, boardSize: number, selectedPlayer: string, theme: string) {
+export function init(fieldRef: HTMLElement | null, header: HTMLElement | null, boardSize: number, selectedPlayer: string) {
     const deck = createDeck(boardSize);
 
     gameState.currentPlayer = selectedPlayer === 'blue';
 
-    headerHtml(header, theme);
+    headerHtml(header);
 
     if (!fieldRef || !header) {
         throw new Error("DOM elements missing");
@@ -41,14 +53,14 @@ export function init(fieldRef: HTMLElement | null, header: HTMLElement | null, b
 
     const cardMap = cardHtml(fieldRef, deck); // ✅ HIER MUSS ES SEIN
 
-    flipCard(fieldRef, cardMap, theme); //NEW THEME
+    flipCard(fieldRef, cardMap); //NEW THEME
 }
 
 
 function flipCard(
     fieldRef: HTMLElement | null,
     cardMap: Map<HTMLButtonElement, Card>,
-    theme: string //NEW THEME
+    // gameState.theme: string //NEW THEME
 ) {
     if (!fieldRef) return;
 
@@ -112,7 +124,7 @@ function flipCard(
             gameState.playerTwoScore++;
         }
 
-        headerHtml(header, theme);
+        headerHtml(header);
         checkGameOver();
 
         resetTurn();
@@ -128,7 +140,7 @@ function flipCard(
 
             gameState.currentPlayer = !gameState.currentPlayer;
 
-            headerHtml(header, theme);
+            headerHtml(header);
 
             resetTurn();
         }, 1000);
@@ -144,14 +156,12 @@ function flipCard(
 }
 
 
-function headerHtml(header: HTMLElement | null, theme: string) {
+function headerHtml(header: HTMLElement | null) {
 
-    const assets = getThemeAssets(theme);
-    const playerImagePath: string = getPlayerImage(theme);
+    const assets = getThemeAssets(gameState.theme);
+    const playerImagePath: string = getPlayerImage(gameState.theme);
 
-
-
-    header!.innerHTML = /*html*/`
+    const mainHeader = header!.innerHTML = /*html*/`
     <div class="game__header">
         <div class="game__header--inner">
             <div class="game__display">
@@ -173,6 +183,14 @@ function headerHtml(header: HTMLElement | null, theme: string) {
     </div>
     
     `;
+
+    // Spiel final beenden 
+    const extBtn = header!.querySelector('.button__exit');
+    extBtn?.addEventListener('click', exitTheGame);
+}
+
+function exitTheGame() {
+    document.getElementById('exitScreen')?.classList.remove('hidden');
 }
 
 type ThemeAssets = {
@@ -183,7 +201,7 @@ type ThemeAssets = {
     contentTwo: string;
 };
 
-function getThemeAssets(theme: string): ThemeAssets {
+export function getThemeAssets(theme: string): ThemeAssets {
     if (theme === "codeVibes") {
         return {
             exit: "src/images/items/exit.svg",
@@ -225,7 +243,7 @@ function checkGameOver() {
 }
 
 function endGame() {
-    let winnerText = '';
+    let winnerText: string = '';
 
     if (gameState.playerOneScore > gameState.playerTwoScore) {
         winnerText = 'Player Blue wins!';
@@ -235,8 +253,9 @@ function endGame() {
         winnerText = 'Draw!';
     }
 
-    // erstmal simpel mit alert
     setTimeout(() => {
-        alert(winnerText); // hier dann HTML Seite bauen mit Gewinneranzeige, Button für neues Spiel etc.
+        gameOverHtml(winnerText); // 🔥 HIER
+        document.getElementById('gameOverScreen')?.classList.remove('hidden');
     }, 500);
 }
+

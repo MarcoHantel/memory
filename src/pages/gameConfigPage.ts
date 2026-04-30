@@ -1,4 +1,5 @@
 import { init } from "../main";
+import { gameState } from "../main";
 
 export function createConfigScreen() {
 
@@ -79,14 +80,14 @@ export function createConfigScreen() {
 </div>
     `;
 
-const inputs = document.querySelectorAll('input[name="theme"]');
+    const inputs = document.querySelectorAll('input[name="theme"]');
 
-inputs.forEach(input => {
-    input.addEventListener('change', (e) => {
-        const target = e.target as HTMLInputElement;
-        changeImage(target.value);
+    inputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+            const target = e.target as HTMLInputElement;
+            changeImage(target.value);
+        });
     });
-});
 
 
     const startBtn = document.getElementById('start-game-btn');
@@ -109,20 +110,22 @@ inputs.forEach(input => {
 
 function startGame(theme: string, player: string, size: number) {
 
+    gameState.theme = theme;
+    gameState.player = player;
+    gameState.boardSize = size;
+
     applyTheme(theme); //Theme zuerst setzen
 
     const fieldRef = document.getElementById('field');
     const header = document.getElementById('header');
 
-    console.log(player, size, theme);
-
-
-    // 👉 Screens wechseln
+    // creens wechseln
     document.getElementById('configScreen')?.classList.add('hidden');
     document.getElementById('gameScreen')?.classList.remove('hidden');
 
-    // 👉 SPIEL STARTEN
-    init(fieldRef, header, size, player, theme);
+
+    // SPIEL STARTEN
+    init(fieldRef, header, size, player);
 }
 
 function applyTheme(theme: string) {

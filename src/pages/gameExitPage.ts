@@ -17,12 +17,22 @@ export function gameExitHtml() {
     </div>
     `;
 
-    // 🔥 JETZT existiert der Button → Event setzen
+    // JETZT existiert der Button → Event setzen
     const backBtn = exitScreen.querySelector('.exit__buttons--btnGame');
+    const exitBtn = exitScreen.querySelector('.exit__buttons--btnExit');
 
     backBtn?.addEventListener('click', backToGame);
+    exitBtn?.addEventListener('click', quitGame);
 }
 
 function backToGame() {
+    console.log('reomve the exitscreen');
+    
     document.getElementById('exitScreen')?.classList.add('hidden');
+}
+
+function quitGame(){
+    document.getElementById('startScreen')?.classList.remove('hidden');
+    document.getElementById('exitScreen')?.classList.add('hidden'); 
+    document.getElementById('gameScreen')?.classList.add('hidden');
 }

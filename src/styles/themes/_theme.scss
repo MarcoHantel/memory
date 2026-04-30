@@ -2,6 +2,7 @@
 
 .theme-codeVibes {
   --primary: #{colours.$codeVibes-primaryDark};
+  --primaryBackground: #{colours.$codeVibes-primaryDark};
   --primaryOpacity: #{colours.$codeVibes-primaryDarkOpacity};
   --headerBackground: #{colours.$codeVibes-primaryDark};
   --buttonExit: #{colours.$codeVibes-buttonFilling};
@@ -12,7 +13,7 @@
   --buttonBorder: 1px solid #{colours.$color-buttonFrame};
   --buttonRadius: 0px;
 
-   --backgroundExit: #{colours.$color-white};
+  --backgroundExit: #{colours.$color-white};
 
   --dropShadow: #{none};
 
@@ -27,11 +28,17 @@
   --popUpExitButtonText: #{colours.$color-buttonFrame};
 
   --popUpText: #{colours.$codeVibes-primaryDark};
+
+  --gameOverheadline: #{colours.$color-pink};
+  --gameOverScoreWidth: #{324px};
+  --gameOverScoreHeight: #{62px};
+  --gameOverScoreBoard: #{colours.$daProject-buttonFilling};
 }
 
 // Hell
 .theme-daPproject {
   --primary: #{colours.$daProject-petrol};
+  --primaryBackground: #{colours.$color-white};
   --primaryOpacity: #{colours.$daProject-darkPetrolOpacity};
   --buttonExit: #{colours.$daProject-buttonFilling};
   --headerBackground: #{colours.$daProject-header};
@@ -57,4 +64,9 @@
   --popUpExitButtonText: #{colours.$color-white};
 
   --popUpText: #{colours.$daProject-superDrakPetrol};
+
+  --gameOverheadline: #{colours.$daProject-orange};
+  --gameOverScoreWidth: #{220px};
+  --gameOverScoreHeight: #{76px};
+  --gameOverScoreBoard: #{colours.$color-white};
 }

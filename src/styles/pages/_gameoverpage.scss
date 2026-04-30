@@ -1,0 +1,61 @@
+@use '../abstract/_colours.scss';
+@use '../abstract/_mixins.scss';
+@use '../themes/_theme.scss';
+
+
+.game-over {
+
+    background-color: var(--primary);
+    height: 100vh;
+    width: 100%;
+    z-index: 9;
+}
+
+.gameover__winner {
+    @include mixins.flex-column;
+
+    &--h2 {
+        color: var(--gameOverheadline);
+        font-weight: 800;
+        font-size: 130px;
+        font-family: 'Figtree';
+        margin-block-end: 72px;
+        box-shadow: var(--dropShadow);
+    }
+
+    &--text {
+        font-weight: 500;
+        font-size: 40px;
+        color: colours.$color-white;
+        font-family: 'Figtree';
+        margin: 8px;
+    }
+}
+
+.gameover__score {
+    @include mixins.flex-center;
+    background-color: var(--gameOverScoreBoard);
+    border-radius: var(--buttonRadius);
+    width: var(--gameOverScoreWidth);
+    height: var(--gameOverScoreHeight);
+    gap: 40px;
+
+    &__player {
+        @include mixins.flex-center;
+        gap: 8px;
+
+        img {
+            width: 30px;
+            height: 30px;
+        }
+
+        &--one {
+            color: colours.$color-skyBlue;
+        }
+
+        &--two {
+            color: colours.$color-orange;
+        }
+    }
+
+}
