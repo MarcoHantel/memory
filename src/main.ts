@@ -26,17 +26,17 @@ export const gameState = {
 };
 
 
-startApp(); // 👉 DAS ist jetzt dein Einstiegspunkt
+startApp(); // Einstiegspunkt
 
 function startApp() {
 
-    let winnerText: string = 'Lalala'; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Später wieder rausnehmen, nur für Deisgn
+    // let winnerText: string = 'Lalala'; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Später wieder rausnehmen, nur für Deisgn
 
     createConfigScreen(); //Game Config Page wird generiert
     gameStartPage(); // Startscreen anzeigen
     gameExitHtml(); // exit popup
     // gameOverHtml(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Später wieder rausnehmen, nur für Deisgn 
-    gameWinnerHtml(winnerText);
+    // gameWinnerHtml(winnerText);
 }
 
 export function init(fieldRef: HTMLElement | null, header: HTMLElement | null, boardSize: number, selectedPlayer: string) {
@@ -50,7 +50,7 @@ export function init(fieldRef: HTMLElement | null, header: HTMLElement | null, b
         throw new Error("DOM elements missing");
     }
 
-    const cardMap = cardHtml(fieldRef, deck); // ✅ HIER MUSS ES SEIN
+    const cardMap = cardHtml(fieldRef, deck);
 
     flipCard(fieldRef, cardMap); //NEW THEME
 }
@@ -256,7 +256,6 @@ function showScore() {
     document.getElementById('gameOverScreen')?.classList.remove('hidden');
     document.getElementById('gameOverScreen')?.classList.add('hidden');
 
-    // 👉 nach 3 Sekunden → Winner
     setTimeout(() => {
         showWinner();
     }, 3000);
@@ -269,6 +268,7 @@ function showWinner() {
 
     document.getElementById('gameWinnerScreen')?.classList.remove('hidden');
     document.getElementById('gameOverScreen')?.classList.add('hidden');
+    document.getElementById('gameScreen')?.classList.add('hidden');
 }
 
 function getWinnerText(): string {

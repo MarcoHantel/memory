@@ -4,7 +4,7 @@ import { gameState } from "../main";
 export function createConfigScreen() {
 
 
-    document.getElementById('configScreen')!.innerHTML = /*html*/`
+  document.getElementById('configScreen')!.innerHTML = /*html*/`
 
 <div class="config-screen__settings">
     <div class="config-screen__settings-wrapper">
@@ -67,11 +67,15 @@ export function createConfigScreen() {
     <img id="imageGame" src="./src/images/items/theme_Visual.svg" alt="config theme">
 
     <div class="config-screen__image--text" >
-        <div>${''}Game theme</div>
-        <img src="./src/images/items/line6.svg" alt="line in yelow">
-        <div>${''}Player</div>
-        <img src="./src/images/items/line6.svg" alt="line in yelow">
-        <div>${''}Board size</div>
+
+      <div id="selectedTheme">Code vibes</div>
+      <img src="./src/images/items/line6.svg">
+
+      <div id="selectedPlayer">Blue</div>
+      <img src="./src/images/items/line6.svg">
+
+      <div id="selectedBoard">16 cards</div>
+
         <div id="start-game-btn" class="config-screen__image--btn">
             <img src="./src/images/items/play_btn.svg" alt="config theme">
             <div>Start</div>
@@ -80,70 +84,113 @@ export function createConfigScreen() {
 
 </div>
     `;
+  
+  updatePreview();
 
-    const inputs = document.querySelectorAll('input[name="theme"]');
+  const inputs = document.querySelectorAll('input[type="radio"]');
 
-    inputs.forEach(input => {
-        input.addEventListener('change', (e) => {
-            const target = e.target as HTMLInputElement;
-            changeImage(target.value);
-        });
+  inputs.forEach(input => {
+    input.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+
+      if (target.name === 'theme') {
+        changeImage(target.value);
+      }
+
+      // Text muss ich immer updaten
+      updatePreview();
     });
+  });
 
+  function updatePreview() {
+    const selectedTheme = (document.querySelector('input[name="theme"]:checked') as HTMLInputElement)?.value;
+    const selectedPlayer = (document.querySelector('input[name="player"]:checked') as HTMLInputElement)?.value;
+    const selectedBoard = (document.querySelector('input[name="boardSize"]:checked') as HTMLInputElement)?.value;
 
-    const startBtn = document.getElementById('start-game-btn');
+    const themeEl = document.getElementById('selectedTheme');
+    const playerEl = document.getElementById('selectedPlayer');
+    const boardEl = document.getElementById('selectedBoard');
 
-    startBtn?.addEventListener('click', () => {
+    if (themeEl) {
+      themeEl.textContent = selectedTheme === 'codeVibes' ? 'Code vibes' : 'DA Project';
+    }
 
-        // 👉 Werte JETZT auslesen (nicht vorher!)
-        const selectedTheme = (document.querySelector('input[name="theme"]:checked') as HTMLInputElement)?.value;
+    if (playerEl) {
+      playerEl.textContent = selectedPlayer === 'blue' ? 'Blue' : 'Orange';
+    }
 
-        const selectedPlayer = (document.querySelector('input[name="player"]:checked') as HTMLInputElement)?.value;
+    if (boardEl) {
+      boardEl.textContent = `${selectedBoard} cards`;
+    }
+  }
 
-        const selectedBoardSize = Number(
-            (document.querySelector('input[name="boardSize"]:checked') as HTMLInputElement)?.value
-        );
-
-        startGame(selectedTheme, selectedPlayer, selectedBoardSize);
+  inputs.forEach(input => {
+    input.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      changeImage(target.value);
     });
+  });
+
+
+  const startBtn = document.getElementById('start-game-btn');
+
+  startBtn?.addEventListener('click', () => {
+
+    // 👉 Werte JETZT auslesen (nicht vorher!)
+    const selectedTheme = (document.querySelector('input[name="theme"]:checked') as HTMLInputElement)?.value;
+
+    const selectedPlayer = (document.querySelector('input[name="player"]:checked') as HTMLInputElement)?.value;
+
+    const selectedBoardSize = Number(
+      (document.querySelector('input[name="boardSize"]:checked') as HTMLInputElement)?.value
+    );
+
+    startGame(selectedTheme, selectedPlayer, selectedBoardSize);
+  });
 }
 
 
 function startGame(theme: string, player: string, size: number) {
-
     gameState.theme = theme;
     gameState.player = player;
     gameState.boardSize = size;
 
-    applyTheme(theme); //Theme zuerst setzen
+    applyTheme(theme);
+
+    const field = document.getElementById('field');
+
+    // GRID wird anpassen
+    field?.classList.remove('grid-4', 'grid-6');
+
+    if (size === 16) {
+        field?.classList.add('grid-4');
+    } else {
+        field?.classList.add('grid-6');
+    }
 
     const fieldRef = document.getElementById('field');
     const header = document.getElementById('header');
 
-    // creens wechseln
     document.getElementById('configScreen')?.classList.add('hidden');
     document.getElementById('gameScreen')?.classList.remove('hidden');
 
-
-    // SPIEL STARTEN
     init(fieldRef, header, size, player);
 }
 
 function applyTheme(theme: string) {
-    document.body.className = ''; // alles resetten
+    document.body.className = ''; // alles zurücksetzen
 
     document.body.classList.add(`theme-${theme}`);
 }
 
 
-
 function changeImage(theme: string) {
-    const image = document.getElementById('imageGame') as HTMLImageElement;
+  const image = document.getElementById('imageGame') as HTMLImageElement;
 
-    if (!image) return;
+  if (!image) return;
 
-    image.src =
-        theme === 'codeVibes'
-            ? './src/images/items/theme_Visual.svg'
-            : './src/images/items/Da.svg';
+  image.src =
+    theme === 'codeVibes'
+      ? './src/images/items/theme_Visual.svg'
+      : './src/images/items/Da.svg';
 }
