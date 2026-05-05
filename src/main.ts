@@ -203,28 +203,32 @@ type ThemeAssets = {
     drawGame: string;
 };
 
+function getImage(path: string): string {
+    return import.meta.env.BASE_URL + path;
+}
+
 export function getThemeAssets(theme: string): ThemeAssets {
     if (theme === "codeVibes") {
         return {
-            exit: "src/images/items/exit.svg",
-            playerOne: "./src/images/items/playerOne.svg",
-            playerTwo: "./src/images/items/playerTwo.svg",
+            exit: getImage("images/items/exit.svg"),
+            playerOne: getImage("images/items/playerOne.svg"),
+            playerTwo: getImage("images/items/playerTwo.svg"),
             contentOne: "Blue",
             contentTwo: "Orange",
-            orangePlayer: "./src/images/items/player-orange-vibes.svg",
-            bluePlayer: "./src/images/items/player-blue-vibes.svg",
-            drawGame: "src/images/items/player_draw_codevibes.png"
+            orangePlayer: getImage("images/items/player-orange-vibes.svg"),
+            bluePlayer: getImage("images/items/player-blue-vibes.svg"),
+            drawGame: getImage("images/items/player_draw_codevibes.png")
         };
     } else {
         return {
-            exit: "src/images/items/da_exit.svg",
-            playerOne: "./src/images/items/da_player1.svg",
-            playerTwo: "./src/images/items/da_player2.jpg",
+            exit: getImage("images/items/da_exit.svg"),
+            playerOne: getImage("images/items/da_player1.svg"),
+            playerTwo: getImage("images/items/da_player2.jpg"),
             contentOne: "",
             contentTwo: "",
-            orangePlayer: "./src/images/items/player-orange-da.svg",
-            bluePlayer: "./src/images/items/player-blue-da.svg",
-            drawGame: "src/images/items/player_draw_da.png"
+            orangePlayer: getImage("images/items/player-orange-da.svg"),
+            bluePlayer: getImage("images/items/player-blue-da.svg"),
+            drawGame: getImage("images/items/player_draw_da.png")
         };
     }
 }
@@ -232,12 +236,12 @@ export function getThemeAssets(theme: string): ThemeAssets {
 function getPlayerImage(theme: string): string {
     if (theme === "codeVibes") {
         return gameState.currentPlayer
-            ? './src/images/items/playerOne.svg'
-            : './src/images/items/playerTwo.svg';
+            ? getImage("images/items/playerOne.svg")
+            : getImage("images/items/playerTwo.svg");
     } else {
         return gameState.currentPlayer
-            ? './src/images/items/da_player1.svg'
-            : './src/images/items/da_player2.jpg';
+            ? getImage("images/items/da_player1.svg")
+            : getImage("images/items/da_player2.jpg");
     }
 }
 

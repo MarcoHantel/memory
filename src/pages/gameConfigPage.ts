@@ -1,6 +1,10 @@
 import { init } from "../main";
 import { gameState } from "../main";
 
+function getImage(path: string): string {
+  return import.meta.env.BASE_URL + path;
+}
+
 export function createConfigScreen() {
 
 
@@ -186,11 +190,10 @@ function applyTheme(theme: string) {
 
 function changeImage(theme: string) {
   const image = document.getElementById('imageGame') as HTMLImageElement;
-
   if (!image) return;
 
   image.src =
     theme === 'codeVibes'
-      ? './src/images/items/theme_Visual.svg'
-      : './src/images/items/Da.svg';
+      ? getImage('images/items/theme_Visual.svg')
+      : getImage('images/items/Da.svg');
 }

@@ -44,7 +44,7 @@ export function gameWinnerHtml(winnerText: string) {
 
     gameWinnerScreen.innerHTML = /*html*/`
         <div class="gamewinner__winner ${winnerClass}">
-            <img src="./src/images/items/confetti.svg" alt="">
+            <img src="${import.meta.env.BASE_URL}images/items/confetti.svg" alt="">
             <p class="gamewinner__winner--text">The winner is</p>
             <h2 class="gamewinner__winner--h2">${winnerText}</h2>
             <img class="gamewinner__winner--image" src="${winnerImage}" alt="">
@@ -59,22 +59,18 @@ export function gameWinnerHtml(winnerText: string) {
 
 
 function goToConfigScreen() {
-
-    // 🔄 GameState zurücksetzen (wichtig!)
     gameState.playerOneScore = 0;
     gameState.playerTwoScore = 0;
     gameState.currentPlayer = true;
 
-    // 🧹 Winner Screen ausblenden
     document.getElementById('gameWinnerScreen')?.classList.add('hidden');
-
-    // 🎮 Game Screen ausblenden
     document.getElementById('gameScreen')?.classList.add('hidden');
 
-    // ⚙️ Config Screen anzeigen
     document.getElementById('configScreen')?.classList.remove('hidden');
 
-    // 🔥 Config neu rendern (wichtig, sonst alte Events kaputt)
+    // 🔥 OPTIONAL: Theme resetten
+    document.body.className = '';
+
     createConfigScreen();
 }
 
