@@ -1,7 +1,7 @@
 @use '../abstract/mixins.scss';
 @use '../abstract/_colours.scss';
 @use '../abstract/fonts.scss';
- @import '../abstract/fonts.scss';
+
 
 .config-screen__settings-wrapper {
 
@@ -30,11 +30,21 @@
     gap: 100px;
 }
 
+
+
 .fieldset {
     min-inline-size: min-content;
     border-style: none;
     padding: 26px 24px;
+}
 
+.settings__config--checkmark {
+    display: inline-block;
+    width: 42px;
+    height: 0;
+    border-top: 3px solid colours.$color-yellow;
+    opacity: 0;
+    margin-left: 10px
 }
 
 
@@ -53,13 +63,23 @@
         width: 26px;
         height: 26px;
     }
-}
-
-.settings__config {
 
     &--optins {
         padding-bottom: 8px;
+        display: flex;
+        align-items: center;
     }
+
+    &--optins:hover .settings__config--checkmark {
+        font-weight: bold;
+        opacity: 1;
+    }
+}
+
+// .settings__config {}
+
+label {
+    cursor: pointer
 }
 
 .config-screen__image {

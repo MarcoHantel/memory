@@ -256,9 +256,9 @@ function showScore() {
     gameWinnerScreen?.classList.add('hidden');
     document.getElementById('gameScreen')?.classList.add('hidden');
 
-    // setTimeout(() => {
-    //     showWinner();
-    // }, 3000);
+    setTimeout(() => {
+        showWinner();
+    }, 3000);
 }
 
 function showWinner() {

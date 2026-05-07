@@ -28,12 +28,15 @@ export function createConfigScreen() {
 
   <div class="settings__config--optins">
     <input type="radio" id="CodeVibes" name="theme" value="codeVibes" checked />
+    <span class="settings__config--circle"></span>
     <label for="CodeVibes">Code vibes</label>
+    <span class="settings__config--checkmark"></span>
   </div>
-
   <div class="settings__config--optins">
     <input type="radio" id="daPproject" name="theme" value="daPproject" />
+    <span class="settings__config--circle"></span>
     <label for="daPproject">DA Project</label>
+        <span class="settings__config--checkmark"></span>
   </div>
 </fieldset>
 </div>
@@ -52,12 +55,16 @@ export function createConfigScreen() {
 
   <div class="settings__config--optins">
     <input type="radio" id="player1" name="player" value="blue" checked />
+    <span class="settings__config--circle"></span>
     <label for="player1">Blue</label>
+        <span class="settings__config--checkmark"></span>
   </div>
 
-  <div>
+  <div class="settings__config--optins">
     <input type="radio" id="player2" name="player" value="orange" />
+    <span class="settings__config--circle"></span>
     <label for="player2">Orange</label>
+        <span class="settings__config--checkmark"></span>
   </div>
 </fieldset>
 </div>
@@ -75,17 +82,23 @@ export function createConfigScreen() {
 
   <div class="settings__config--optins">
     <input type="radio" id="card16" name="boardSize" value="16" checked />
+    <span class="settings__config--circle"></span>
     <label for="card16">16 cards</label>
+        <span class="settings__config--checkmark"></span>
   </div>
 
   <div class="settings__config--optins">
     <input type="radio" id="card24" name="boardSize" value="24" />
+    <span class="settings__config--circle"></span>
     <label for="card24">24 cards</label>
+        <span class="settings__config--checkmark"></span>
   </div>
 
   <div class="settings__config--optins">
     <input type="radio" id="card36" name="boardSize" value="36" />
+    <span class="settings__config--circle"></span>
     <label for="card36">36 cards</label>
+        <span class="settings__config--checkmark"></span>
   </div>
 </fieldset>
 </div>
