@@ -29,6 +29,7 @@ function startApp() {
     createConfigScreen(); 
     gameStartPage(); 
     gameExitHtml(); 
+    gameOverHtml()
 }
 
 export function init(fieldRef: HTMLElement | null, header: HTMLElement | null, boardSize: number, selectedPlayer: string) {
@@ -43,7 +44,6 @@ export function init(fieldRef: HTMLElement | null, header: HTMLElement | null, b
     }
 
     const cardMap = cardHtml(fieldRef, deck);
-
     flipCard(fieldRef, cardMap); 
 }
 
@@ -248,22 +248,27 @@ function checkGameOver() {
 function showScore() {
 
     gameOverHtml();
-    document.getElementById('gameOverScreen')?.classList.remove('hidden');
-    document.getElementById('gameOverScreen')?.classList.add('hidden');
 
-    setTimeout(() => {
-        showWinner();
-    }, 3000);
+    const gameOverScreen = document.getElementById('gameOverScreen');
+    const gameWinnerScreen = document.getElementById('gameWinnerScreen');
+
+    gameOverScreen?.classList.remove('hidden');
+    gameWinnerScreen?.classList.add('hidden');
+    document.getElementById('gameScreen')?.classList.add('hidden');
+
+    // setTimeout(() => {
+    //     showWinner();
+    // }, 3000);
 }
 
 function showWinner() {
+
     const winnerText = getWinnerText();
 
     gameWinnerHtml(winnerText);
 
     document.getElementById('gameWinnerScreen')?.classList.remove('hidden');
     document.getElementById('gameOverScreen')?.classList.add('hidden');
-    document.getElementById('gameScreen')?.classList.add('hidden');
 }
 
 function getWinnerText(): string {

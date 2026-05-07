@@ -29,7 +29,6 @@ gameWinnerScreen.innerHTML = /*html*/`
     homeBtn?.addEventListener('click', goToConfigScreen);
 }
 
-
 function goToConfigScreen() {
     gameState.playerOneScore = 0;
     gameState.playerTwoScore = 0;
@@ -42,10 +41,6 @@ function goToConfigScreen() {
 
     createConfigScreen();
 }
-
-
-
-
 
 function getWinnerImage(): string {
     const assets = getThemeAssets(gameState.theme);

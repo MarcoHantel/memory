@@ -17,17 +17,17 @@
         color: var(--gameOverheadline);
         font-weight: 800;
         font-size: 130px;
-        font-family: 'Figtree';
-        margin-block-end: 72px;
-        box-shadow: var(--dropShadow);
+        font-family: var(--gameOverScoreTextFontFamily);
+        margin-block-end: 140px;
+        filter: var(--dropShadow);
     }
 
     &--text {
-        font-weight: 500;
-        font-size: 40px;
+        font-weight: var(--gameOverScoreTextFontWeight);
+        font-size: var(--gameOverScoreTextFontSize);
         color: colours.$color-white;
-        font-family: 'Figtree';
-        margin: 8px;
+        font-family: var(--gameOverScoreTextFontFamily);
+        margin: 16px;
     }
 }
 
@@ -50,10 +50,12 @@
 
         &--one {
             color: colours.$color-skyBlue;
+            font-size: var(--gameOverScorePlayerTextFontSize);
         }
 
         &--two {
             color: colours.$color-orange;
+            font-size: var(--gameOverScorePlayerTextFontSize);
         }
     }
 
