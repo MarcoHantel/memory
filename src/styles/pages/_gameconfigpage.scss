@@ -83,11 +83,13 @@
     //     align-items: center;
     // }
 
-    &--optins:hover{
+    &--optins:hover {
         font-weight: bold;
+
         .settings__config--checkline {
             opacity: 1;
         }
+
         .settings__config--checkpoint {
             opacity: 1;
         }
@@ -95,7 +97,7 @@
 }
 
 
-.settings__config--circle{
+.settings__config--circle {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -117,6 +119,7 @@ label {
     cursor: pointer;
     position: relative;
 
+
     input[type="radio"] {
         position: absolute;
         opacity: 0;
@@ -126,10 +129,12 @@ label {
         transform: translate(-50%, -50%) scale(1);
     }
 
-    input[type="radio"]:checked + .settings__config--circle::after {
+    input[type="radio"]:checked+.settings__config--circle::after {
         transform: translate(-50%, -50%) scale(1);
     }
+
 }
+
 
 .settings__config--circle {
     width: 16px;
@@ -137,14 +142,12 @@ label {
 
     border: 2px solid colours.$codeVibes-primaryDark;
     border-radius: 50%;
-
     position: relative;
 
     // Innerer Punkt mit hover-Effekt
     &::after {
         content: "";
         position: absolute;
-
         width: 8px;
         height: 8px;
 
@@ -158,6 +161,22 @@ label {
 
         transition: transform 0.1s ease;
     }
+}
+
+.settings__config--checkline,
+.settings__config--checkpoint {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.settings__config--optins:hover .settings__config--checkline,
+.settings__config--optins:hover .settings__config--checkpoint {
+    opacity: 1;
+}
+
+input[type="radio"]:checked ~ .settings__config--checkmark .settings__config--checkline,
+input[type="radio"]:checked ~ .settings__config--checkmark .settings__config--checkpoint {
+    opacity: 1;
 }
 
 

@@ -21,33 +21,33 @@ export function createConfigScreen() {
     <img 
       class="settings__config--img" 
       src="${getImage('images/items/palette.svg')}" 
-      alt="palette"
-    >
+      alt="palette">
     <p class="settings__config--headline">Game themes</p>
   </legend>
 
+  <label for="CodeVibes">
   <div class="settings__config--optins">
-    <input type="radio" id="CodeVibes" name="theme" value="codeVibes" checked />
+    <input type="radio" id="CodeVibes" name="theme" value="codeVibes"/>
     <span class="settings__config--circle"></span>
-    <label for="CodeVibes">Code vibes</label>
-
+     Code vibes
     <div class="settings__config--checkmark">
       <span class="settings__config--checkline"></span>
       <span class="settings__config--checkpoint"></span>
     </div>
-
+     </label>
   </div>
+
+<label for="daPproject">
   <div class="settings__config--optins">
     <input type="radio" id="daPproject" name="theme" value="daPproject" />
     <span class="settings__config--circle"></span>
-    <label for="daPproject">DA Project</label>
-
+      DA Project
     <div class="settings__config--checkmark">
       <span class="settings__config--checkline"></span>
       <span class="settings__config--checkpoint"></span>
     </div>
-
   </div>
+  </label>
 </fieldset>
 </div>
 
@@ -57,36 +57,33 @@ export function createConfigScreen() {
     <img 
       class="settings__config--img" 
       src="${getImage('images/items/chess_pawn.svg')}" 
-      alt="chess pawn"
-    >
-
+      alt="chess pawn">
     <p class="settings__config--headline">Choose player</p>
   </legend>
 
+  <label for="player1">
   <div class="settings__config--optins">
-    <input type="radio" id="player1" name="player" value="blue" checked />
+    <input type="radio" id="player1" name="player" value="blue"/>
     <span class="settings__config--circle"></span>
-    <label for="player1">Blue</label>
-
+      Blue
     <div class="settings__config--checkmark">
       <span class="settings__config--checkline"></span>
       <span class="settings__config--checkpoint"></span>
     </div>
-  
-      </div>
+  </div>
+</label>
 
-
+<label for="player2">
   <div class="settings__config--optins">
     <input type="radio" id="player2" name="player" value="orange" />
     <span class="settings__config--circle"></span>
-    <label for="player2">Orange</label>
-
+      Orange
     <div class="settings__config--checkmark">
       <span class="settings__config--checkline"></span>
       <span class="settings__config--checkpoint"></span>
     </div>
-  
-      </div>
+  </div>
+</label>
 
 </fieldset>
 </div>
@@ -102,43 +99,42 @@ export function createConfigScreen() {
     <p class="settings__config--headline">Board size</p>
   </legend>
 
+<label for="card16">
   <div class="settings__config--optins">
-    <input type="radio" id="card16" name="boardSize" value="16" checked />
+    <input type="radio" id="card16" name="boardSize" value="16"/>
     <span class="settings__config--circle"></span>
-    <label for="card16">16 cards</label>
-
+      16 cards
     <div class="settings__config--checkmark">
       <span class="settings__config--checkline"></span>
       <span class="settings__config--checkpoint"></span>
     </div>
-  
-      </div>
+  </div>
+</label>
 
 
+<label for="card24">
   <div class="settings__config--optins">
     <input type="radio" id="card24" name="boardSize" value="24" />
     <span class="settings__config--circle"></span>
-    <label for="card24">24 cards</label>
-
+      24 cards
     <div class="settings__config--checkmark">
       <span class="settings__config--checkline"></span>
       <span class="settings__config--checkpoint"></span>
     </div>
-  
-      </div>
+  </div>
+</label>
 
-
+<label for="card36">
   <div class="settings__config--optins">
     <input type="radio" id="card36" name="boardSize" value="36" />
     <span class="settings__config--circle"></span>
-    <label for="card36">36 cards</label>
-
+      36 cards
     <div class="settings__config--checkmark">
       <span class="settings__config--checkline"></span>
       <span class="settings__config--checkpoint"></span>
     </div>
-  
-      </div>
+  </div>
+</label>
 
 </fieldset>
 </div>
@@ -154,15 +150,15 @@ export function createConfigScreen() {
 
     <div class="config-screen__image--text">
 
-      <div id="selectedTheme">Code vibes</div>
+      <div id="selectedTheme">Theme</div>
 
       <img src="${getImage('images/items/line6.svg')}" alt="">
 
-      <div id="selectedPlayer">Blue</div>
+      <div id="selectedPlayer">Player</div>
 
       <img src="${getImage('images/items/line6.svg')}" alt="">
 
-      <div id="selectedBoard">16 cards</div>
+      <div id="selectedBoard">Board Size</div>
 
       <div id="start-game-btn" class="config-screen__image--btn">
           <img 
@@ -194,11 +190,11 @@ export function createConfigScreen() {
   });
 
   function updatePreview() {
-    const selectedTheme = (document.querySelector('input[name="theme"]:checked') as HTMLInputElement)?.value;
+    const selectedTheme = (document.querySelector('input[name="theme"]:checked') as HTMLInputElement)?.value || 'Theme';;
 
-    const selectedPlayer = (document.querySelector('input[name="player"]:checked') as HTMLInputElement)?.value;
+    const selectedPlayer = (document.querySelector('input[name="player"]:checked') as HTMLInputElement)?.value  || 'Player';;
 
-    const selectedBoard = (document.querySelector('input[name="boardSize"]:checked') as HTMLInputElement)?.value;
+    const selectedBoard = (document.querySelector('input[name="boardSize"]:checked') as HTMLInputElement)?.value || '';
 
     const themeEl = document.getElementById('selectedTheme');
     const playerEl = document.getElementById('selectedPlayer');
