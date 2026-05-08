@@ -28,9 +28,8 @@
     background-color: colours.$color-white;
     @include mixins.flex-center;
     gap: 100px;
+
 }
-
-
 
 .fieldset {
     min-inline-size: min-content;
@@ -38,19 +37,33 @@
     padding: 26px 24px;
 }
 
-.settings__config--checkmark {
+.settings__config--checkline {
     display: inline-block;
     width: 42px;
     height: 0;
     border-top: 3px solid colours.$color-yellow;
     opacity: 0;
-    margin-left: 10px
+    margin-left: 10px;
+}
+
+.settings__config--checkpoint {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    rotate: 50deg;
+    background-color: rgb(240, 234, 110);
+    opacity: 0;
 }
 
 
 .settings__config {
     @include mixins.flex-center;
     margin-left: -32px;
+
+    &--checkmark {
+        display: flex;
+        align-items: center;
+    }
 
     &--headline {
         font-size: 24px;
@@ -64,23 +77,107 @@
         height: 26px;
     }
 
-    &--optins {
-        padding-bottom: 8px;
-        display: flex;
-        align-items: center;
-    }
+    // &--optins {
+    //     padding-bottom: 8px;
+    //     display: flex;
+    //     align-items: center;
+    // }
 
-    &--optins:hover .settings__config--checkmark {
+    &--optins:hover{
         font-weight: bold;
-        opacity: 1;
+        .settings__config--checkline {
+            opacity: 1;
+        }
+        .settings__config--checkpoint {
+            opacity: 1;
+        }
     }
 }
 
-// .settings__config {}
+
+.settings__config--circle{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
 
 label {
     cursor: pointer
 }
+
+//  design button 
+
+.settings__config--optins {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 8px;
+    cursor: pointer;
+    position: relative;
+
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+    }
+
+    &:hover .settings__config--circle::after {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    input[type="radio"]:checked + .settings__config--circle::after {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.settings__config--circle {
+    width: 16px;
+    height: 16px;
+
+    border: 2px solid colours.$codeVibes-primaryDark;
+    border-radius: 50%;
+
+    position: relative;
+
+    // Innerer Punkt mit hover-Effekt
+    &::after {
+        content: "";
+        position: absolute;
+
+        width: 8px;
+        height: 8px;
+
+        background-color: colours.$codeVibes-primaryDark;
+        border-radius: 50%;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%) scale(0);
+
+        transition: transform 0.1s ease;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .config-screen__image {
 
