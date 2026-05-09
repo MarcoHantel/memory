@@ -208,7 +208,7 @@ export function getThemeAssets(theme: string): ThemeAssets {
             contentTwo: "Orange",
             orangePlayer: getImage("images/items/player-orange-vibes.svg"),
             bluePlayer: getImage("images/items/player-blue-vibes.svg"),
-            drawGame: getImage("images/items/player_draw_codevibes.png")
+            drawGame: getImage("images/items/player_draw_codevibes.svg")
         };
     } else {
         return {
@@ -219,7 +219,7 @@ export function getThemeAssets(theme: string): ThemeAssets {
             contentTwo: "",
             orangePlayer: getImage("images/items/player-orange-da.svg"),
             bluePlayer: getImage("images/items/player-blue-da.svg"),
-            drawGame: getImage("images/items/player_draw_da.png")
+            drawGame: getImage("images/items/player_draw_da.svg")
         };
     }
 }

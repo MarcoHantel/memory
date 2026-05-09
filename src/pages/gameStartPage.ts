@@ -15,27 +15,22 @@ export function gameStartPage() {
             <img 
                 class="start-screen__btn--imgC" 
                 src="${getImage('images/items/stadiaController.svg')}" 
-                alt="Play Icon"
-            >
+                alt="Play Icon">
 
             <div class="start-screen__btn--text">Play</div>
-
             <img 
                 class="start-screen__btn--imgA" 
                 src="${getImage('images/items/arrow1.svg')}" 
-                alt="Play Icon"
-            >
-        </div>
-
-        <img 
+                alt="Play Icon">
+            </div>
+            <img 
             class="controller" 
             src="${getImage('images/items/controller.svg')}" 
-            alt="Play Icon"
-        >
+            alt="Play Icon">
+        </div>
     `;
 
     const startBtn = document.getElementById("start-game");
-
     startBtn?.addEventListener("click", startConfig);
 }
 

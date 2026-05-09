@@ -8,8 +8,6 @@ export function gameOverHtml() {
 
     const assets = getThemeAssets(gameState.theme);
 
-    console.log('text', assets.contentOne, 'player', gameState.playerOneScore);
-
     gameOverScreen.innerHTML = /*html*/`
         <div class="gameover__winner">
             <h2 class="gameover__winner--h2">Game over</h2>
@@ -17,13 +15,10 @@ export function gameOverHtml() {
             <div class="gameover__score">
                 <div class="gameover__score__player">
                     <img src="${assets.playerOne}">
-                    
                     <p class="gameover__score__player--one"> ${assets.contentOne} ${gameState.playerOneScore}</p>
                 </div>
-
                 <div class="gameover__score__player">
-                    <img src="${assets.playerTwo}">
-                    
+                    <img src="${assets.playerTwo}"> 
                     <p class="gameover__score__player--two">${assets.contentTwo} ${gameState.playerTwoScore}</p>
                 </div>
             </div>

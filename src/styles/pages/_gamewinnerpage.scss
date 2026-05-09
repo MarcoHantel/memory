@@ -23,7 +23,7 @@
     }
 
     &--h2 {
-        // ❗ Default (Fallback)
+
         color: var(--gameWinnerHeadlindColor);
         font-weight: 700;
         font-size: 80px;
@@ -38,7 +38,7 @@
         height: 250px;
     }
 
-    // 🔥 NEU: Gewinner-Zustände
+
     &.winner-blue {
         .gamewinner__winner--h2 {
             color: var(--gameWinnerHeadlindColorBlue);
@@ -53,7 +53,13 @@
 
     &.winner-draw {
         .gamewinner__winner--h2 {
-            color: grey; // oder eigene Variable
+            color: var(--gameOverheadline);
+            font-weight: 800;
+            font-size: 130px;
+            font-family: var(--gameOverScoreTextFontFamily);
+            margin-block-end: 0px;
+            filter: var(--dropShadow);
+
         }
     }
 }

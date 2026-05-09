@@ -55,7 +55,6 @@
     opacity: 0;
 }
 
-
 .settings__config {
     @include mixins.flex-center;
     margin-left: -32px;
@@ -76,12 +75,6 @@
         width: 26px;
         height: 26px;
     }
-
-    // &--optins {
-    //     padding-bottom: 8px;
-    //     display: flex;
-    //     align-items: center;
-    // }
 
     &--optins:hover {
         font-weight: bold;
@@ -108,8 +101,6 @@
 label {
     cursor: pointer
 }
-
-//  design button 
 
 .settings__config--optins {
     display: flex;
@@ -144,7 +135,6 @@ label {
     border-radius: 50%;
     position: relative;
 
-    // Innerer Punkt mit hover-Effekt
     &::after {
         content: "";
         position: absolute;
@@ -179,25 +169,6 @@ input[type="radio"]:checked ~ .settings__config--checkmark .settings__config--ch
     opacity: 1;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .config-screen__image {
 
     @include mixins.flex-column;
@@ -205,7 +176,6 @@ input[type="radio"]:checked ~ .settings__config--checkmark .settings__config--ch
     color: var(--primary);
     font-weight: 400;
     font-size: 20px;
-
 
     &--text {
         @include mixins.flex-center;

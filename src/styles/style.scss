@@ -8,16 +8,12 @@
 @use './themes/_theme.scss';
 @use './pages/_gameexitpage.scss';
 @use './pages/_gamewinnerpage.scss';
-@import './abstract/fonts.scss';
-
-
-
+@use './abstract/fonts.scss';
 
 body {
     height: 100vh;
-    background: colours.$codeVibes-primaryDark;//var(--primary);
+    background: colours.$codeVibes-primaryDark;
     margin: 0;
-    // margin-top: 30px;
     font-family: 'Red Rose', cursive;
 }
 

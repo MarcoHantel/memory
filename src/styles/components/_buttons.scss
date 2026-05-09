@@ -72,6 +72,22 @@
     }
 }
 
+
+.config-screen__image--btn:disabled {
+    background-color: colours.$color-lightgrey;
+    cursor: not-allowed;
+
+    &:hover {
+        transform: none;
+        font-size: 20px;
+
+        img {
+            transform: none;
+        }
+    }
+}
+
+
 .config-screen__image--btn {
     @include mixins.flex-center;
     width: 126px;
@@ -81,6 +97,7 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 20px;
+    border: none;
 
     transition: transform 0.1s ease, font-size 0.1s ease;
 

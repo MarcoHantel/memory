@@ -93,8 +93,7 @@ export function createConfigScreen() {
     <img 
       class="settings__config--img" 
       src="${getImage('images/items/style.svg')}" 
-      alt="style book"
-    >
+      alt="style book">
 
     <p class="settings__config--headline">Board size</p>
   </legend>
@@ -158,18 +157,16 @@ export function createConfigScreen() {
 
       <img src="${getImage('images/items/line6.svg')}" alt="">
 
-      <div id="selectedBoard">Board Size</div>
+      <div id="selectedBoard">Board size</div>
 
-      <div id="start-game-btn" class="config-screen__image--btn">
+      <button id="start-game-btn" class="config-screen__image--btn" disabled>
           <img 
             src="${getImage('images/items/play_btn.svg')}" 
-            alt="config theme"
-          >
+            alt="config theme">
 
           <div>Start</div>
-      </div>
+      </button>
     </div>
-
 </div>
 `;
 
@@ -177,45 +174,64 @@ export function createConfigScreen() {
 
   const inputs = document.querySelectorAll('input[type="radio"]');
 
-  inputs.forEach(input => {
-    input.addEventListener('change', (e) => {
-      const target = e.target as HTMLInputElement;
+inputs.forEach(input => {
+  input.addEventListener('change', (e) => {
 
-      if (target.name === 'theme') {
-        changeImage(target.value);
-      }
+    const target = e.target as HTMLInputElement;
 
-      updatePreview();
-    });
+    if (target.name === 'theme') {
+      changeImage(target.value);
+    }
+
+    updatePreview();
+    updateButtonState();
   });
+});
 
   function updatePreview() {
-    const selectedTheme = (document.querySelector('input[name="theme"]:checked') as HTMLInputElement)?.value || 'Theme';;
 
-    const selectedPlayer = (document.querySelector('input[name="player"]:checked') as HTMLInputElement)?.value  || 'Player';;
+    const selectedTheme =
+      (document.querySelector('input[name="theme"]:checked') as HTMLInputElement)?.value;
 
-    const selectedBoard = (document.querySelector('input[name="boardSize"]:checked') as HTMLInputElement)?.value || '';
+    const selectedPlayer =
+      (document.querySelector('input[name="player"]:checked') as HTMLInputElement)?.value;
+
+    const selectedBoard =
+      (document.querySelector('input[name="boardSize"]:checked') as HTMLInputElement)?.value;
 
     const themeEl = document.getElementById('selectedTheme');
     const playerEl = document.getElementById('selectedPlayer');
     const boardEl = document.getElementById('selectedBoard');
 
     if (themeEl) {
-      themeEl.textContent =
-        selectedTheme === 'codeVibes'
-          ? 'Code vibes'
-          : 'DA Project';
+
+      if (!selectedTheme) {
+        themeEl.textContent = 'Theme';
+      } else if (selectedTheme === 'codeVibes') {
+        themeEl.textContent = 'Code vibes';
+      } else {
+        themeEl.textContent = 'DA Project';
+      }
     }
 
     if (playerEl) {
-      playerEl.textContent =
-        selectedPlayer === 'blue'
-          ? 'Blue'
-          : 'Orange';
+
+      if (!selectedPlayer) {
+        playerEl.textContent = 'Player';
+      } else if (selectedPlayer === 'blue') {
+        playerEl.textContent = 'Blue';
+      } else {
+        playerEl.textContent = 'Orange';
+      }
     }
 
     if (boardEl) {
-      boardEl.textContent = `${selectedBoard} cards`;
+
+      if (!selectedBoard) {
+        boardEl.textContent = 'Board size';
+      } else {
+        boardEl.textContent = `${selectedBoard} cards`;
+      }
     }
   }
 
@@ -234,6 +250,37 @@ export function createConfigScreen() {
     startGame(selectedTheme, selectedPlayer, selectedBoardSize);
   });
 }
+
+
+function updateButtonState() {
+
+  const selectedTheme = document.querySelector(
+    'input[name="theme"]:checked'
+  );
+
+  const selectedPlayer = document.querySelector(
+    'input[name="player"]:checked'
+  );
+
+  const selectedBoard = document.querySelector(
+    'input[name="boardSize"]:checked'
+  );
+
+  const startBtn = document.getElementById(
+    'start-game-btn'
+  ) as HTMLButtonElement;
+
+  if (!startBtn) return;
+
+  const allSelected =
+    selectedTheme &&
+    selectedPlayer &&
+    selectedBoard;
+
+  startBtn.disabled = !allSelected;
+}
+
+
 
 function startGame(theme: string, player: string, size: number) {
   gameState.theme = theme;

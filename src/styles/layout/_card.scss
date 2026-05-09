@@ -2,23 +2,6 @@
 @use '../abstract/_mixins.scss';
 @use '../themes/_theme.scss';
 
-
-
-
-// .limitaion {
-//     width: 100vw;
-//     height: 100vh;
-//     @include mixins.flex-column;
-//     background-color: var(--primaryBackground);
-
-//     #field {
-//         display: grid;
-//         grid-template-columns: repeat(4, 1fr);
-//         gap: 20px;
-//         background-color: var(--primaryBackground);
-//     }
-// }
-
 .limitaion {
     width: 100vw;
     height: 100vh;
@@ -31,7 +14,6 @@
         background-color: var(--primaryBackground);
     }
 
-    // 🔥 GRID VARIANTEN
     #field.grid-4 {
         grid-template-columns: repeat(4, 1fr);
     }
